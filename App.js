@@ -1,18 +1,29 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-import Header from './scr/comp/Header';
-
-export default function App() {
-  const tasks = ['Tafera 1','Tafera 2','Tafera 3','Tafera 4']
-  return (
-    <View style={styles.container}>
-      <Header />
-      <View>
-        <FlatList data={tasks} renderItem={({ item })=> <Text>{item}</Text>} />
-      </View>
-    </View >
-  );
+import { Component } from 'react';
+import { FlatList, Text } from 'react-native';
+import ItemEstado from './ItemEstado';
+export default class ListaEstado extends Component {
+  state = {
+    estados:[
+      { sigla: 'SC', capital: 'Florianopolis' },
+      { sigla: 'RS', capital: 'Posto Alegre' },
+      { sigla: 'PR', capital: 'Curitiba' },
+      { sigla: 'SP', capital: 'São Paulo' },
+    ],
+  };
 }
-
+render () {
+  return (
+     <>
+      <FlatList 
+        data = {this.state.estados}
+        renderItem = {({ item })} =>
+          <ItemEstado estado={item} />
+      }
+      />
+      <Text>Total: {this.state.estado.length}</Text>
+     </>
+   );
+} 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
